@@ -2,7 +2,7 @@
 
 root_dir=.
 cert_type=rsa
-openvpn_exe=openvpn
+openvpn_exe=./openvpn
 
 
 ca_cert=${root_dir}/cert/${cert_type}/ca.crt
