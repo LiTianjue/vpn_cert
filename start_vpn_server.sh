@@ -1,7 +1,7 @@
 #!/bin/bash
 
 root_dir=.
-cert_type=rsa
+cert_type=sm2
 openvpn_exe=./openvpn
 
 
@@ -10,6 +10,9 @@ ca_key=${root_dir}/cert/${cert_type}/ca.key
 
 server_cert=${root_dir}/cert/${cert_type}/server.crt
 server_key=${root_dir}/cert/${cert_type}/server.key
+
+server_enc_cert=${root_dir}/cert/${cert_type}/server_enc.crt
+server_enc_key=${root_dir}/cert/${cert_type}/server_enc.key
 
 client_cert=${root_dir}/cert/${cert_type}/client.crt
 client_key=${root_dir}/cert/${cert_type}/client.key
@@ -25,5 +28,7 @@ ${openvpn_exe} --config ${server_config} \
 	--ca ${ca_cert} \
 	--cert ${server_cert} \
 	--key  ${server_key} \
-	--dh	${dh_key}
+	--dh	${dh_key}	\
+	--enc-key ${server_enc_key}	\
+	--extra-certs ${server_enc_cert}
 
