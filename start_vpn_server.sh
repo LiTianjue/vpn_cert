@@ -11,6 +11,8 @@ ca_key=${root_dir}/cert/${cert_type}/ca.key
 server_cert=${root_dir}/cert/${cert_type}/server.crt
 server_key=${root_dir}/cert/${cert_type}/server.key
 
+server_pfx=${root_dir}/cert/${cert_type}/server.pfx
+
 server_enc_cert=${root_dir}/cert/${cert_type}/server_enc.crt
 server_enc_key=${root_dir}/cert/${cert_type}/server_enc.key
 
@@ -25,9 +27,10 @@ client_config=${root_dir}/config/client.conf
 server_config=${root_dir}/config/server.conf
 
 ${openvpn_exe} --config ${server_config} \
-	--ca ${ca_cert} \
-	--cert ${server_cert} \
-	--key  ${server_key} \
+#	--ca ${ca_cert} \
+#	--cert ${server_cert} \
+#	--key  ${server_key} \
+	--pkcs12 ${server_pfx} \
 	--dh	${dh_key}	\
 	--enc-key ${server_enc_key}	\
 	--extra-certs ${server_enc_cert}
